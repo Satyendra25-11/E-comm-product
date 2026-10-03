@@ -87,7 +87,11 @@ export const login = async (req, res) => {
 
   await userModel.findByIdAndUpdate(user._id, { refreshToken });
 
-  res.cookie("refreshToken", refreshToken, { httpOnly: true });
+  res.cookie("refreshToken", refreshToken,
+     { httpOnly: true ,
+      secure: true,
+    sameSite: "none",
+     });
 
   res.status(200).json({
     message: "user logged in successfully",
@@ -103,7 +107,13 @@ export const login = async (req, res) => {
 };
 
 export const refresh = async (req, res) => {
+  
+  console.log("Cookies:", req.cookies);
+  console.log("Refresh Token:", req.cookies.refreshToken);
+  
   const refreshToken = req.cookies.refreshToken;
+  console.log(refreshToken);
+  
 
   if (!refreshToken) {
     return res.status(401).json({
@@ -138,7 +148,10 @@ export const refresh = async (req, res) => {
     const accessToken = createAccessToken({ userId, email });
     const newRefreshToken = createRefreshToken({userId, email });
 
-    res.cookie("refreshToken", newRefreshToken, { httpOnly: true });
+    res.cookie("refreshToken", newRefreshToken, { httpOnly: true,
+      secure: true,
+    sameSite: "none",
+     });
 
     await userModel.findByIdAndUpdate(user._id, {
       refreshToken: newRefreshToken,
