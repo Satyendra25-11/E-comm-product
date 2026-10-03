@@ -4,7 +4,7 @@ import { use } from "react";
 
 
 const api = axios.create({
-    baseURL: "https://frontend-one-phi-efd6r98pta.vercel.app/api",
+    baseURL: "https://e-comm-product-tawny.vercel.app/api",
     
 })
 

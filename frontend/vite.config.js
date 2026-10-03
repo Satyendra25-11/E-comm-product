@@ -8,7 +8,7 @@ export default defineConfig({
   server:{
     proxy:{
       "/api":{
-        target: "https://crud-e-comm.onrender.com",
+        target: "https://e-comm-product-0kht.onrender.com",
         changeOrigin: true
       }
     }
