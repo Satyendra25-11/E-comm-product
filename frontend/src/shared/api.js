@@ -5,7 +5,7 @@ import { use } from "react";
 
 const api = axios.create({
     // baseURL: "https://e-comm-product-tawny.vercel.app/api",
-    baseURL: "https://e-comm-product-0kht.onrender.com",
+    baseURL: "https://e-comm-product-0kht.onrender.com/api",
     withCredentials: true
     
 })
