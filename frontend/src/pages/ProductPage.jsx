@@ -15,7 +15,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null)
 
-
+  const [loaded, setLoaded] = useState(false)
   
 
 
@@ -89,15 +89,23 @@ const ProductPage = () => {
                     <img
                       key={index}
                       src={image}
+                      loading="lazy"
+                      onLoad={()=>{setLoaded(true)}}
                       alt=""
                       onClick={() => setSelectedImage(image)}
                       className={`w-full aspect-square rounded-lg border object-cover cursor-pointer
+                        ${setLoaded ? "block" : "hidden"}
                          ${selectedImage === image
                           ? "border-blue-600"
                           : "border-gray-300"
                       }`}
                     />
                   ))}
+
+                   {!loaded && (
+    <div className="w-full h-52 bg-gray-300 animate-pulse rounded-lg"></div>
+)}
+
                 </div>
               </div>
 
